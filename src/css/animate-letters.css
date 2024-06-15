@@ -1,0 +1,42 @@
+.letter[data-animated-letter] {
+    display: inline-block;
+    position: relative;
+    transform-style: preserve-3d;
+
+    &.animate {
+        --value: -100%;
+        --duration: 0.5s;
+        animation: var(--letter-animation) var(--duration) ease-in-out alternate forwards infinite;
+        animation-delay: var(--delay, 0ms);
+
+        [data-animate-letters]:hover > & {
+            animation-play-state: paused;
+        }
+
+        [data-animate-letters][data-animate-only="hover"] > & {
+            animation-play-state: paused;
+        }
+        
+        [data-animate-letters][data-animate-only="hover"]:hover > & {
+            animation-play-state: running;
+        }
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(var(--value, -100%));
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}

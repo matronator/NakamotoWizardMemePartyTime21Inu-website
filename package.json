@@ -17,12 +17,21 @@
     "@myway42/sparkly": "^1.0.3",
     "@vanillawc/wc-marquee": "^1.0.31",
     "co-depends": "^0.0.23",
+    "howler": "^2.2.4",
+    "localstorage-slim": "^2.7.1",
     "spin-wheel": "^4.3.2"
-  },
+    },
+  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
   "scripts": {
     "prebuild": "rimraf .cache && rimraf dist",
     "build": "npm run prebuild && parcel build src/*.html",
-    "start": "parcel index.html"
+    "start": "parcel index.html --target legacy"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "targets": {
+    "legacy": {
+      "engines": {
+        "browsers": "> 0.5%, last 4 versions, Firefox ESR, not dead"
+      }
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import { Wheel } from '../../node_modules/spin-wheel/dist/spin-wheel-esm.js';
+import ls from 'localstorage-slim';
+import {Howl, Howler} from 'howler';
 
 const menuItems = [
     {
@@ -28,18 +30,22 @@ export function mainMenu() {
 
     const menuToggle = mainMenu.querySelector('.main-menu-toggle');
     /** @type {HTMLDialogElement} */
-    const menuWheelWrapper = mainMenu.querySelector('.main-menu-wheel-wrapper');
+    const menuDialog = mainMenu.querySelector('.main-menu-wheel-wrapper');
     const menuWheel = mainMenu.querySelector('.main-menu-wheel');
 
-    if (!menuWheel || !menuToggle) return;
-    
+    if (!menuWheel || !menuToggle || !menuDialog) return;
+
+    /** @type {Wheel} */
+    const wheel = initWheel();
+
     menuToggle.addEventListener('click', () => {
-        if (mainMenu.dataset.menuOpen !== 'true') {
+        if (!menuDialog.open) {
             mainMenu.dataset.menuOpen = 'true';
-            menuWheelWrapper.showModal();
-            } else {
+            menuDialog.showModal();
+            wheel.resize();
+        } else {
             mainMenu.dataset.menuOpen = 'false';
-            menuWheelWrapper.close();
+            menuDialog.close();
         }
     });
 
@@ -47,12 +53,30 @@ export function mainMenu() {
     if (menuCloseButton) {
         menuCloseButton.addEventListener('click', () => {
             mainMenu.dataset.menuOpen = 'false';
-            menuWheelWrapper.close();
+            menuDialog.close();
         });
     }
 
-    /** @type {Wheel} */
-    const wheel = initWheel();
+    ['mousedown', 'touchstart'].forEach((event) => {
+        menuDialog.addEventListener(event, (e) => {
+            ls.set('wheelClickTarget', e.target.outerHTML);
+            if (e.target !== menuDialog) return;
+            mainMenu.dataset.menuOpen = 'true';
+            menuDialog.showModal();
+            wheel.resize();
+        });
+    });
+
+    ['mouseup', 'touchend'].forEach((event) => {
+        menuDialog.addEventListener(event, (e) => {
+            const wheelClickTarget = ls.get('wheelClickTarget');
+            if (e.target !== menuDialog || e.target.outerHTML !== wheelClickTarget) return;
+            mainMenu.dataset.menuOpen = 'false';
+            menuDialog.close();
+        });
+    });
+
+    menuDialog.close();
 
     wheel.onRest = function(event) {
         const index = event.currentIndex;
@@ -62,19 +86,37 @@ export function mainMenu() {
             itemEl.scrollIntoView({ behavior: 'smooth' });
         }
     }
+
+    const tickSounds = [
+        new URL('../../assets/audio/tick.mp3', import.meta.url).toString(),
+        new URL('../../assets/audio/tick.ogg', import.meta.url).toString(),
+        new URL('../../assets/audio/tick.webm', import.meta.url).toString(),
+    ];
+    const tickSound = new Howl({
+        src: tickSounds,
+    });
+
+    wheel.onCurrentIndexChange = function() {
+        tickSound.play();
+    }
 }
 
 /** @returns {Wheel} */
 function initWheel() {
-    const wheelURL = new URL('../../assets/wheel.png', import.meta.url);
+    const wheelURL = new URL('../../assets/wheel2.png', import.meta.url);
     const props = {
         items: menuItems,
         overlayImage: wheelURL.toString(),
         radius: 0.68,
         borderWidth: 0,
         lineWidth: 0,
-        itemBackgroundColors: ['#fff', '#eee', '#ddd'],
-        rotationResistance: -175,
+        itemBackgroundColors: ['#43a1cd', '#9ac147', '#639b47', '#e1e23b', '#f7941e', '#ba3e2e'],
+        // itemLabelColors: ['#fff', '#eee', '#ddd'],
+        itemLabelColors: ['#000'],
+        // itemLabelStrokeColor: '#000',
+        // itemLabelStrokeWidth: 1,
+        itemLabelFont: "'Jost', sans-serif",
+        rotationResistance: -150,
         rotationSpeedMax: 750,
         pixelRatio: devicePixelRatio,
     };
