@@ -1,6 +1,9 @@
 import { Wheel } from '../../node_modules/spin-wheel/dist/spin-wheel-esm.js';
 import ls from 'localstorage-slim';
 import {Howl, Howler} from 'howler';
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 const menuItems = [
     {
@@ -60,10 +63,6 @@ export function mainMenu() {
     ['mousedown', 'touchstart'].forEach((event) => {
         menuDialog.addEventListener(event, (e) => {
             ls.set('wheelClickTarget', e.target.outerHTML);
-            if (e.target !== menuDialog) return;
-            mainMenu.dataset.menuOpen = 'true';
-            menuDialog.showModal();
-            wheel.resize();
         });
     });
 
@@ -83,7 +82,8 @@ export function mainMenu() {
         const item = menuItems[index];
         const itemEl = document.getElementById(item.label.toLowerCase());
         if (itemEl) {
-            itemEl.scrollIntoView({ behavior: 'smooth' });
+            const linkST = ScrollTrigger.create({ trigger: itemEl, start: "top top" });
+            gsap.to(window, { duration: 0.5, scrollTo: linkST.start, overwrite: "auto", ease: 'power4' });
         }
     }
 
@@ -99,6 +99,10 @@ export function mainMenu() {
     wheel.onCurrentIndexChange = function() {
         tickSound.play();
     }
+
+    setTimeout(() => {
+        menuDialog.classList.remove('initializing');
+    }, 500);
 }
 
 /** @returns {Wheel} */

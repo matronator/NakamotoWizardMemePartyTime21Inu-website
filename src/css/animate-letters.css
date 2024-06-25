@@ -16,7 +16,7 @@
         [data-animate-letters][data-animate-only="hover"] > & {
             animation-play-state: paused;
         }
-        
+
         [data-animate-letters][data-animate-only="hover"]:hover > & {
             animation-play-state: running;
         }
@@ -32,7 +32,7 @@
     }
 }
 
-@keyframes rotate3d {
+@keyframes flip {
     0% {
         transform: rotateY(0deg);
     }
