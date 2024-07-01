@@ -21,6 +21,7 @@
     "gsap": "^3.12.5",
     "howler": "^2.2.4",
     "localstorage-slim": "^2.7.1",
+    "open-props": "^1.7.4",
     "spin-wheel": "^4.3.2"
   },
   "browserslist": ">0.1%, defaults",

@@ -1,4 +1,4 @@
-import { Wheel } from '../../node_modules/spin-wheel/dist/spin-wheel-esm.js';
+import { Wheel } from '../../../node_modules/spin-wheel/dist/spin-wheel-esm.js';
 import ls from 'localstorage-slim';
 import {Howl, Howler} from 'howler';
 import gsap from "gsap";
@@ -88,9 +88,9 @@ export function mainMenu() {
     }
 
     const tickSounds = [
-        new URL('../../assets/audio/tick.mp3', import.meta.url).toString(),
-        new URL('../../assets/audio/tick.ogg', import.meta.url).toString(),
-        new URL('../../assets/audio/tick.webm', import.meta.url).toString(),
+        new URL('../../../assets/audio/tick.mp3', import.meta.url).toString(),
+        new URL('../../../assets/audio/tick.ogg', import.meta.url).toString(),
+        new URL('../../../assets/audio/tick.webm', import.meta.url).toString(),
     ];
     const tickSound = new Howl({
         src: tickSounds,
@@ -107,16 +107,16 @@ export function mainMenu() {
 
 /** @returns {Wheel} */
 function initWheel() {
-    const wheelURL = new URL('../../assets/wheel2.png', import.meta.url);
+    const wheelURL = new URL('../../../assets/wheel2.png', import.meta.url);
     const props = {
         items: menuItems,
         overlayImage: wheelURL.toString(),
         radius: 0.68,
         borderWidth: 0,
         lineWidth: 0,
-        itemBackgroundColors: ['#43a1cd', '#9ac147', '#639b47', '#e1e23b', '#f7941e', '#ba3e2e'],
+        itemBackgroundColors: ['#FFAA00', '#098231', '#B6097F', '#057FC5', '#7B1E7A', '#BD1E1E'],
         // itemLabelColors: ['#fff', '#eee', '#ddd'],
-        itemLabelColors: ['#000'],
+        itemLabelColors: ['#fff'],
         // itemLabelStrokeColor: '#000',
         // itemLabelStrokeWidth: 1,
         itemLabelFont: "'Jost', sans-serif",

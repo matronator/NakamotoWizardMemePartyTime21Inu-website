@@ -1,3 +1,4 @@
+@import '../../node_modules/open-props/open-props.min.css';
 @import 'animate-letters.css';
 
 @tailwind base;
@@ -19,6 +20,15 @@
 
     body {
         color: #fff;
+        cursor: url('../../assets/cursor.png') 16 16, auto;
+    }
+
+    main {
+        padding: 1rem;
+
+        @screen sm {
+            padding: 2rem;
+        }
     }
 
     .display-1 {
@@ -86,6 +96,10 @@
     header + * {
         padding-top: 4rem;
     }
+    h1.logo [data-animate-letters] {
+        display: inline-block;
+    }
+
     nav.main-menu {
         position: fixed;
         top: 0;
@@ -245,5 +259,9 @@
 @layer utilities {
     .content-auto {
         content-visibility: auto;
+    }
+
+    .inner-shadow-2 {
+        box-shadow: var(--inner-shadow-2);
     }
 }

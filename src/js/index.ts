@@ -4,11 +4,14 @@
     night-sky https://github.com/H0rn0chse/NightSky
 */
 import '@myway42/sparkly';
-import { mainMenu } from './main-menu.js';
-import { LettersAnimator } from './animate-letters.ts';
-import { scrollHeadings, register } from './scroll-animations.ts';
 import '@appnest/masonry-layout';
-import { InfiniteScroll } from './infinite-scroll.ts';
+import './import/logo.ts';
+import { LettersAnimator } from './import/animate-letters.ts';
+import { InfiniteScroll } from './import/infinite-scroll.ts';
+import { mainMenu } from './import/main-menu.js';
+import {
+    register, revealHeadings, revealLetters, revealParagraphs
+} from './import/scroll-animations.ts';
 
 register();
 
@@ -16,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mainMenu();
     const lettersAnimator = new LettersAnimator();
     lettersAnimator.animate();
-    scrollHeadings();
+    revealHeadings();
+    revealLetters();
+    revealParagraphs();
 
     const infiniteScroll = new InfiniteScroll();
 });
