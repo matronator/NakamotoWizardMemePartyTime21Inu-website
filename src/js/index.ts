@@ -4,9 +4,12 @@
     night-sky https://github.com/H0rn0chse/NightSky
 */
 import '@myway42/sparkly';
-import '@appnest/masonry-layout';
+import '@vanillawc/wc-blink';
+import 'iconify-icon';
 import './import/logo.ts';
+import './import/darkmode-toggle.ts';
 import { LettersAnimator } from './import/animate-letters.ts';
+import { createCursor } from './import/cursor.ts';
 import { InfiniteScroll } from './import/infinite-scroll.ts';
 import { mainMenu } from './import/main-menu.js';
 import {
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealHeadings();
     revealLetters();
     revealParagraphs();
+    createCursor();
 
     const infiniteScroll = new InfiniteScroll();
 });

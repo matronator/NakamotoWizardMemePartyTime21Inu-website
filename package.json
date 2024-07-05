@@ -16,10 +16,12 @@
     "@appnest/masonry-layout": "^2.2.3",
     "@h0rn0chse/night-sky": "^2.0.0",
     "@myway42/sparkly": "^1.0.3",
+    "@vanillawc/wc-blink": "^1.1.21",
     "@vanillawc/wc-marquee": "^1.0.31",
     "co-depends": "^0.0.23",
     "gsap": "^3.12.5",
     "howler": "^2.2.4",
+    "iconify-icon": "^2.1.0",
     "localstorage-slim": "^2.7.1",
     "open-props": "^1.7.4",
     "spin-wheel": "^4.3.2"

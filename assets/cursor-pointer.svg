@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="128px" height="128px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="250" cy="250" r="146.528" id="b" spreadMethod="reflect" gradientTransform="matrix(0.201497, 0, 0, 0.201497, 199.625971, 199.625971)">
+      <stop offset="0" style="stop-color: rgb(0, 187, 255);"/>
+      <stop offset="1" style="stop-color: rgb(136, 0, 255);"/>
+    </radialGradient>
+    <filter id="d" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 0 0 20 1 #0059ff">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20"/>
+      <feOffset dx="0" dy="0"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA type="linear" slope="2"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#0059ff"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="a" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 0 0 17 0.76 #8100ffef">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="17"/>
+      <feOffset dx="0" dy="0"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA type="linear" slope="1.52"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#8100ffef"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="250" cy="250" r="60.718" id="gradient-1" gradientTransform="matrix(0.957235, 0, 0, 0.957235, 10.691158, 10.691277)">
+      <stop offset="0" style="stop-color: rgb(0, 162, 255);"/>
+      <stop offset="1" style="stop-color: rgb(207, 0, 255);"/>
+    </radialGradient>
+  </defs>
+  <g transform="matrix(0.064058, 0, 0, 0.064058, -0.014668, -0.014668)" stroke-width="4" style="">
+    <path d="M339.466 250c0 49.411-40.055 89.466-89.466 89.466-49.411 0-89.466-40.055-89.466-89.466 0-49.411 40.055-89.466 89.466-89.466 49.411 0 89.466 40.055 89.466 89.466ZM250 103.472c-80.925 0-146.528 65.603-146.528 146.528S169.075 396.528 250 396.528 396.528 330.925 396.528 250 330.925 103.472 250 103.472Z" paint-order="fill" filter="url(#a)" fill="url(#b)" style="stroke: rgba(244, 72, 255, 0.843);"/>
+    <circle style="transform-box: fill-box; transform-origin: 50% 50%; fill: url('#gradient-1'); stroke: rgb(11, 195, 255);" cx="250" cy="250" transform-origin="50% 50%" r="58.11" filter="url(#d)">
+      <animateTransform type="scale" additive="sum" attributeName="transform" values="1 1;1.25 1.25" dur="2s" keyTimes="0; 1" id="f" begin="0s;e.end"/>
+      <animateTransform type="scale" additive="sum" attributeName="transform" values="1.25 1.25;1 1" begin="f.end" dur="2s" keyTimes="0; 1" id="e"/>
+    </circle>
+  </g>
+</svg>

@@ -44,10 +44,12 @@ export function mainMenu() {
     menuToggle.addEventListener('click', () => {
         if (!menuDialog.open) {
             mainMenu.dataset.menuOpen = 'true';
+            document.body.style.overflow = 'hidden';
             menuDialog.showModal();
             wheel.resize();
         } else {
             mainMenu.dataset.menuOpen = 'false';
+            document.body.style.overflow = 'auto';
             menuDialog.close();
         }
     });
@@ -56,6 +58,7 @@ export function mainMenu() {
     if (menuCloseButton) {
         menuCloseButton.addEventListener('click', () => {
             mainMenu.dataset.menuOpen = 'false';
+            document.body.style.overflow = 'auto';
             menuDialog.close();
         });
     }
@@ -120,8 +123,8 @@ function initWheel() {
         // itemLabelStrokeColor: '#000',
         // itemLabelStrokeWidth: 1,
         itemLabelFont: "'Jost', sans-serif",
-        rotationResistance: -150,
-        rotationSpeedMax: 750,
+        rotationResistance: -130,
+        rotationSpeedMax: 850,
         pixelRatio: devicePixelRatio,
     };
 

@@ -12,19 +12,19 @@ class LogoElement extends HTMLElement {
         const colors = [
             'text-orange-500',
             'text-sky-500',
-            'text-white',
+            'text-black dark:text-white',
             'text-green-500',
             'text-red-500',
             'text-pink-600',
             'text-rose-500',
-            'text-yellow-400',
-            'text-fuchsia-300',
-            'text-lime-400',
-            'text-slate-300',
+            'text-yellow-600 dark:text-yellow-400',
+            'text-fuchsia-700 dark:text-fuchsia-300',
+            'text-lime-600 dark:text-lime-400',
+            'text-slate-700 dark:text-slate-300',
             'text-blue-500',
-            'text-purple-400',
-            'text-amber-400',
-            'text-indigo-300',
+            'text-purple-600 dark:text-purple-400',
+            'text-amber-600 dark:text-amber-400',
+            'text-indigo-700 dark:text-indigo-300',
         ];
 
         shuffle(colors);

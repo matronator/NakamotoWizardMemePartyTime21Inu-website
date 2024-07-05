@@ -19,8 +19,14 @@
     }
 
     body {
-        color: #fff;
+        color: #000;
+        background-color: #fff;
         cursor: url('../../assets/cursor.png') 16 16, auto;
+        
+        &.dark {
+            color: #fff;
+            background-color: #000;
+        }
     }
 
     main {
@@ -93,11 +99,55 @@
 }
 
 @layer components {
+    iconify-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+
+    #cursor {
+        position: fixed;
+        top: -6px;
+        left: -6px;
+        width: 12px;
+        height: 12px;
+        border: 1px solid #00e5ff;
+        border-radius: 100%;
+        z-index: 999;
+        animation: var(--animation-blink);
+        pointer-events: none;
+    }
+
+    .cursor-ring {
+        position: fixed;
+        top: -16px;
+        left: -16px;
+        width: 32px;
+        height: 32px;
+        border: 1px solid hsla(186, 100%, 50%, var(--opacity));
+        border-radius: 100%;
+        z-index: 998;
+        animation: cursor-ring 1s linear forwards alternate infinite;
+        animation-delay: var(--delay);
+        pointer-events: none;
+    }
+
     header + * {
         padding-top: 4rem;
     }
     h1.logo [data-animate-letters] {
         display: inline-block;
+    }
+
+    dark-mode-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        display: block;
+
+        &:hover, & .px-skyswitch > input[type=checkbox] {
+            cursor: url('../../assets/cursor-pointer.png') 16 16, auto;
+        }
     }
 
     nav.main-menu {
@@ -108,16 +158,15 @@
         justify-content: space-between;
         align-items: center;
         padding: 1rem;
-        color: #fff;
 
         & .main-menu-toggle {
+            @apply text-black dark:text-white;
             display: flex;
             justify-content: center;
             align-items: center;
             appearance: none;
             background-color: transparent;
             border: none;
-            color: #fff;
             cursor: pointer;
             z-index: 99;
 
@@ -127,11 +176,11 @@
                 margin-right: .5rem;
 
                 & > .main-menu-toggle-icon-bar {
+                    @apply bg-black dark:bg-white;
                     display: block;
                     width: 2rem;
                     height: 0.25rem;
                     margin: 0.25rem 0;
-                    background-color: #fff;
                     border-radius: 0.25rem;
                 }
             }
@@ -219,7 +268,7 @@
         }
     }
 
-    #nightSky {
+    #site-bg {
         width: 100vw;
         height: 100vh;
         overflow: hidden;
@@ -234,6 +283,23 @@
 
         &:nth-child(odd) {
             height: 250px;
+        }
+    }
+
+    @keyframes cursor-ring {
+        0% {
+            width: 24px;
+            height: 24px;
+            top: -12px;
+            left: -12px;
+            opacity: 1;
+        }
+        100% {
+            width: 48px;
+            height: 48px;
+            top: -24px;
+            left: -24px;
+            opacity: 0.25;
         }
     }
 

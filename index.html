@@ -21,16 +21,74 @@
     <script type="module" src="node_modules/@vanillawc/wc-marquee/index.js"></script>
     <script type="module" src="node_modules/@h0rn0chse/night-sky/dist/bundle.min.js"></script>
 </head>
-<body>
-    <night-sky
-        id="nightSky"
-        layers="5"
-        density="10"
-        velocity-x="50"
-        velocity-y="10"
-        star-color="#AFF"
-    >
-    </night-sky>
+<body class="dark">
+    <template id="darkmode-bg">
+        <night-sky
+            id="nightSky"
+            layers="5"
+            density="10"
+            velocity-x="50"
+            velocity-y="10"
+            star-color="#CFF"
+        >
+        </night-sky>
+    </template>
+    <template id="lightmode-bg">
+        <style>
+            #day-sky {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(180deg, #55cfff 0%, #bbe3ff 100%);
+            }
+            .sun {
+                position: absolute;
+                top: 40%;
+                left: 70%;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: #fff;
+                padding: 5em;
+                box-shadow: 0 0 60px 30px #fff04b, 0 0 100px 30px #ff8d0c, 0 0 140px 60px #fabc14;
+            }
+            .clouds {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .cloud {
+                position: absolute;
+                top: var(--top);
+                left: 0;
+                opacity: var(--opacity);
+                animation: cloudMove var(--duration) linear infinite;
+                animation-delay: var(--delay);
+            }
+            @keyframes cloudMove {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(100vw);
+                }
+            }
+        </style>
+        <div id="day-sky">
+            <div class="sun" id="sun"></div>
+            <div class="clouds">
+                <img class="cloud cloud-1" src="/assets/clouds/cloud-1.png">
+                <img class="cloud cloud-2" src="/assets/clouds/cloud-2.png">
+                <img class="cloud cloud-3" src="/assets/clouds/cloud-3.png">
+                <img class="cloud cloud-4" src="/assets/clouds/cloud-4.png">
+                <img class="cloud cloud-5" src="/assets/clouds/cloud-5.png">
+            </div>
+        </div>
+    </template>
+
+    <div id="site-bg">
+        
+    </div>
 
     <header id="home">
         <nav class="main-menu" data-menu-open="false">
@@ -49,8 +107,9 @@
                 </div>
             </dialog>
         </nav>
+        <dark-mode-toggle state="on"></dark-mode-toggle>
     </header>
-    <div class="pt-16 pb-8">
+    <div class="w-screen pt-16 pb-8">
         <wc-marquee party class="text-3xl">
             <span class="block pb-4">Let's get this party started!</span>
         </wc-marquee>
@@ -64,7 +123,7 @@
 
         <section id="about">
             <h2 class="mb-4 text-green-600 ff-jacquard-12 display-2" data-animate-letters="flip" data-hover-letters="wobble" data-animate-only="hover">About</h2>
-            <h3 class="text-slate-100 ff-jacquard-12 display-6">Welcome to <logo-element></logo-element>!</h3>
+            <h3 class="text-slate-900 dark:text-slate-100 ff-jacquard-12 display-6">Welcome to <logo-element></logo-element>!</h3>
             <h4 class="font-mono text-2xl text-yellow-400" data-reveal-letters>The Legend Begins</h4>
             <p class="text-lg bg-[#fff47a1a] inner-shadow-2 font-sans font-extralight p-4 my-0 backdrop-blur-sm" data-reveal-paragraph>In a mystical realm where blockchain magic meets the power of memes, a new legend is born. Behold the <logo-element></logo-element>, the most enchanting and whimsical memecoin to grace the Stacks blockchain. With a ticker symbol as iconic as "BITCOIN," this token combines the timeless legacy of the original cryptocurrency with the playful spirit of the crypto community.</p>
             <h4 class="font-mono text-2xl text-orange-400" data-reveal-letters>The Origins</h4>
