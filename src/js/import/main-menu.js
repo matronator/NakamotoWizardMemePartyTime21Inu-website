@@ -123,8 +123,8 @@ function initWheel() {
         // itemLabelStrokeColor: '#000',
         // itemLabelStrokeWidth: 1,
         itemLabelFont: "'Jost', sans-serif",
-        rotationResistance: -130,
-        rotationSpeedMax: 850,
+        rotationResistance: -160,
+        rotationSpeedMax: 750,
         pixelRatio: devicePixelRatio,
     };
 
